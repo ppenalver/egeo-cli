@@ -1,17 +1,21 @@
 {
   "name": "@stratio/egeo-cli",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "cli with some utilities for egeo",
   "author": "Stratio",
   "license": "Apache",
   "bin": "bin/egeo-cli",
   "main": "./src/main.js",
   "keywords": [
-     "angular 2",
-     "egeo",
-     "cli",
-     "webpack"
+    "angular 2",
+    "egeo",
+    "cli",
+    "webpack"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stratio/egeo-cli"
+  },
   "dependencies": {
     "@angular/common": "2.4.6",
     "@angular/compiler": "2.4.6",
@@ -66,5 +70,20 @@
     "webpack-dev-server": "2.4.2",
     "webpack-merge": "4.1.0",
     "zone.js": "0.8.5"
+  },
+  "scripts": {
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "2.0.0",
+    "semantic-release": "6.3.2"
+  },
+  "release": {
+    "branch": "release"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
