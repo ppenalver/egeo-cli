@@ -27,6 +27,7 @@ module.exports = function (examplePath, AOT, assets) {
          'polyfills': path.resolve(__dirname, '../app/polyfills.ts'),
          'main': AOT ? [path.resolve(__dirname, '../app/main.aot.ts')] : [path.resolve(__dirname, '../app/main.ts')]
       },
+      context: __dirname,
 
       resolve: {
          alias: {
