@@ -1,0 +1,22 @@
+@import '~@stratio/egeo-ui-base/utils/typography';
+
+html{
+   font-size: 16px;
+   overflow: hidden;
+   overflow-y: hidden !important;
+}
+
+body{
+   margin: 0;
+   overflow: hidden;
+   font-family: egeo-get-font(body);
+   background-color: #ffffff;
+
+   overflow-y: auto;
+   height: 100vh;
+   max-height: 100vh;
+}
+
+img {
+   max-width: 100%;
+}

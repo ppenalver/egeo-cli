@@ -1,0 +1,31 @@
+{
+   "compilerOptions": {
+      "target": "es5",
+      "module": "es2015",
+      "moduleResolution": "node",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": true,
+      "noEmit": true,
+      "strictNullChecks": false,
+      "baseUrl": ".",
+      "paths": {
+         "demo": ["../../egeo/src/st-modal/demo"]
+      },
+      "lib": ["es2015", "dom"]
+   },
+   "awesomeTypescriptLoaderOptions": {
+      "forkChecker": true,
+      "useWebpackText": true
+   },
+   "angularCompilerOptions": {
+      "genDir": "../dist/compiled",
+      "skipMetadataEmit": true
+   },
+   "compileOnSave": false,
+   "buildOnSave": false,
+   "atom": {
+      "rewriteTsconfig": false
+   }
+}
