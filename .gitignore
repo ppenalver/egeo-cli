@@ -1,0 +1,41 @@
+#################
+## Misc
+#################
+**/.DS_Store
+node_modules
+*.log
+node
+coverage
+target
+.sass-cache
+dll/
+compiled/
+
+#################
+## Project
+#################
+temp
+lib
+dist
+
+#################
+## IDEs
+#################
+.idea
+.project
+.settings
+.vscode
+.history
+
+############
+## Windows
+############
+Thumbs.db
+Desktop.ini
+
+############
+## Mac
+############
+.DS_Store
+
+yarn.lock

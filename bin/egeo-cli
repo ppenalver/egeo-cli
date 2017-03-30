@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var compiler = require('../src/main');
+
+program
+   .version('0.1.0')
+   .usage('<example path> [options...]')
+   .option('-m, --mode []', '[dev][prod], [dev]: start in a host 3030 a example, [prod]: compile example', 'dev')
+   .option('-a, --assets', 'have assets', false)
+   .action(function (path) {
+      exampleFolder = path
+   })
+   .parse(process.argv);
+
+if (typeof exampleFolder === 'undefined') {
+   console.error('no example path given!');
+   process.exit(1);
+}
+
+program.assets ? console.log(program.assets) : console.log('no assets to copy');
+
+compiler(program.mode, exampleFolder, program.assets);
