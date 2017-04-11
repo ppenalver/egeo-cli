@@ -47,7 +47,7 @@ module.exports = function (examplePath, AOT, assets) {
                use: [{
                      loader: 'awesome-typescript-loader',
                      options: {
-                        configFileName: helpers.root('tsconfig.json')
+                        tsconfig: helpers.root('tsconfig.json')
                      }
                   },
                   'angular2-template-loader',
