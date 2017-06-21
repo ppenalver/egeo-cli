@@ -7,7 +7,6 @@ var componentFile = undefined;
 program
    .version('0.1.0')
    .usage('<example path>')
-   // .option('-d, --document [component]', 'Document a component', '')
    .action(function (path) {
       componentFile = path
    })
