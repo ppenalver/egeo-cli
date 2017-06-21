@@ -1,0 +1,20 @@
+{
+   "compilerOptions": {
+      "experimentalDecorators": true,
+      "lib": ["es2015", "dom"],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "outDir": "../../dist/tools/document",
+      "noEmitOnError": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "locale": "es-es",
+      "target": "es5",
+      "types": [
+         "node"
+      ]
+   },
+   "files": [
+      "main.ts"
+   ]
+}
