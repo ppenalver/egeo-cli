@@ -1,0 +1,14 @@
+{
+   "extends": "tslint:recommended",
+   "rules": {
+      "indent": [true, "spaces", 3],
+      "quotemark": ["single"],
+      "typedef": [true, "call-signature", "parameter", "property-declaration", "variable-declaration",
+         "member-variable-declaration", "member-variable-declaration"
+      ],
+      "trailing-comma": [
+         false
+      ],
+      "interface-name": [true, "never-prefix"]
+   }
+}

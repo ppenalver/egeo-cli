@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var program = require('commander');
-var docGenerator = require('../src/docGenerator');
+var docGenerator = require('../dist/index');
 var componentFile = undefined;
 
 program
@@ -17,4 +17,4 @@ if (typeof componentFile === 'undefined') {
    process.exit(1);
 }
 
-docGenerator(componentFile);
+docGenerator.generateDoc(componentFile);
