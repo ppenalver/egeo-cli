@@ -5,7 +5,8 @@
    "author": "Stratio",
    "license": "Apache 2.0",
    "bin": "bin/egeo-cli",
-   "main": "./src/main.js",
+   "main": "./dist/index.js",
+   "typings": "dist/index.d.ts",
    "keywords": [
       "angular 2",
       "egeo",
@@ -18,29 +19,33 @@
    "scripts": {
       "semantic-release": "semantic-release pre && npm publish && semantic-release post",
       "test": "mocha",
-      "commit": "git-cz"
+      "commit": "git-cz",
+      "build": "tsc",
+      "build:live": "tsc -w"
    },
    "dependencies": {
-      "@types/glob": "5.0.30",
-      "@types/js-beautify": "0.0.30",
-      "@types/lodash": "4.14.66",
-      "@types/node": "8.0.0",
+      "chalk": "^1.1.3",
       "commander": "2.9.0",
       "comment-parser": "0.4.0",
       "glob": "7.1.2",
       "js-beautify": "1.6.14",
       "lodash": "4.17.4",
-      "markdown-table": "1.1.0",
-      "ts-node": "3.0.6",
-      "tslint": "5.4.3",
-      "typescript": "2.3.4"
+      "markdown-table": "1.1.0"
    },
    "devDependencies": {
+      "@types/chalk": "0.4.31",
+      "@types/glob": "5.0.30",
+      "@types/js-beautify": "0.0.30",
+      "@types/lodash": "4.14.66",
+      "@types/node": "8.0.0",
       "chai": "4.0.2",
       "commitizen": "2.9.6",
       "cz-conventional-changelog": "2.0.0",
       "mocha": "3.4.2",
-      "semantic-release": "6.3.6"
+      "semantic-release": "6.3.6",
+      "ts-node": "3.0.6",
+      "tslint": "5.4.3",
+      "typescript": "2.3.4"
    },
    "release": {
       "branch": "release"

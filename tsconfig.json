@@ -1,13 +1,15 @@
 {
    "compilerOptions": {
       "experimentalDecorators": true,
-      "lib": ["es2015", "dom"],
+      "emitDecoratorMetadata": true,
       "module": "commonjs",
       "moduleResolution": "node",
-      "outDir": "../../dist/tools/document",
+      "outDir": "./dist/",
       "noEmitOnError": true,
       "noImplicitAny": true,
       "strictNullChecks": true,
+      "inlineSourceMap": true,
+      "declaration": true,
       "locale": "es-es",
       "target": "es5",
       "types": [
@@ -15,6 +17,6 @@
       ]
    },
    "files": [
-      "main.ts"
+      "src/index.ts"
    ]
 }
