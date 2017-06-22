@@ -21,7 +21,8 @@
       "test": "mocha",
       "commit": "git-cz",
       "build": "tsc",
-      "build:live": "tsc -w"
+      "build:live": "tsc -w",
+      "prepublishOnly": "tsc"
    },
    "dependencies": {
       "chalk": "^1.1.3",

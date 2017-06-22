@@ -10,7 +10,7 @@ before_script:
   - npm prune
 scripts:
   - npm test
-  - npm run build
+  - npm build
 after_success:
   - ./scripts/deploy.sh
 branches:
