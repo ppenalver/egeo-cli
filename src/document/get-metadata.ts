@@ -51,7 +51,8 @@ function extractComponentInfo(comments: CommentParserResult[]): ComponentInfo {
       example: '',
       inputs: [],
       outputs: [],
-      title: ''
+      title: '',
+      type: ''
    };
    comments.forEach((comment: CommentParserResult) => {
       if (comment.tags) {
@@ -72,6 +73,7 @@ function extractInfoFromTag(original: ComponentInfo, tag: CommentParserTag): Com
          case 'description' || 'desc':
             componentInfo.description = hasValue(tag.description) ? tag.description : '';
             componentInfo.title = hasValue(tag.name) ? tag.name : '';
+            componentInfo.type = hasValue(tag.type) ? tag.type : '';
             break;
          case 'example':
             componentInfo.example = hasValue(tag.description) ? beautify.html(tag.description) : '';
