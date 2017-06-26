@@ -9,6 +9,7 @@ export interface Parameter {
 export interface ComponentInfo {
    title: string;
    description: string;
+   type: string; // Component, directive, pipe, service, etc.
    example: string;
    inputs: Parameter[];
    outputs: Parameter[];

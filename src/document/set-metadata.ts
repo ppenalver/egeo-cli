@@ -51,9 +51,10 @@ function getParamDescription(parameter: Parameter): string {
 }
 
 function getMainDescription(metadata: ComponentInfo): string {
-   const title: string = hasValue(metadata.title) ? metadata.title : 'TITLE';
+   const title: string = hasValue(metadata.title) ? metadata.title : '{TITLE}';
+   const type: string = hasValue(metadata.type) ? metadata.type : '{TYPE}';
    const description: string = hasValue(metadata.description) ? metadata.description : '{Component description}';
-   return `# ${title}\n\n   ${description}\n\n`;
+   return `# ${title} (${type})\n\n   ${description}\n\n`;
 }
 
 function getExample(metadata: ComponentInfo): string {
