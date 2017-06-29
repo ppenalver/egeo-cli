@@ -13,10 +13,18 @@
       "locale": "es-es",
       "target": "es5",
       "types": [
-         "node"
+         "node",
+         "mocha",
+         "chai",
+         "js-beautify",
+         "lodash",
+         "mock-fs"
       ]
    },
    "files": [
       "src/index.ts"
+   ],
+   "include": [
+      "**/*.spec.ts"
    ]
 }

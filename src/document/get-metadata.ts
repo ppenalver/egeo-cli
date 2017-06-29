@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import * as beautify from 'js-beautify';
 import * as _ from 'lodash';
 
@@ -6,12 +5,13 @@ import * as _ from 'lodash';
 const commentParser = require('comment-parser');
 /* tslint:enable */
 
-import { hasValue, isDefined, log } from '../utils';
+import { hasValue, isDefined, log, getFileContent } from '../utils';
 import { CommentParserResult, CommentParserTag, ComponentInfo, Parameter } from './document.interfaces';
 
 export function getMetadata(filePath: string): ComponentInfo {
    log(`[READ FILE]: ${filePath}`);
-   const fileContent: string = readFileSync(filePath, 'utf-8');
+   const fileContent: string = getFileContent(filePath);
+   console.log('***', fileContent)
    const comments: CommentParserResult[] = getCommentParsed(fileContent);
    const parsed: ComponentInfo = extractComponentInfo(comments);
    return parsed;
