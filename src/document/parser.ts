@@ -1,35 +1,18 @@
-import { COMMENT_TYPE, DocParam } from './parser.model';
+import { getAllResults } from './parser-utils';
+import { DocParam, TAG_TYPES } from './parser.model';
 
-export class CommentParser {
+export function parser(text: string): DocParam[] {
+   let comments: string[] = getAllResults(text, /\/\*\*(([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*)\*\/+/igm, 1);
+   comments = comments.map((_) => removeStars(_));
+   comments = comments.reduce((prev: string[], curr: string) => [...prev, ...splitByTag(curr)], []);
+   return comments.map((_) => new DocParam(_));
+}
 
-   private parseComment(comment: string): void {
-      let params: DocParam = new DocParam();
-      params.type = this.getType(this.applyRegexp(comment, ))
-   }
+function removeStars(text: string): string {
+   return text.split('*').map((_) => _.trim()).join('\n');
+}
 
-   private getType(type: string): COMMENT_TYPE {
-      switch (type) {
-         case 'description': return COMMENT_TYPE.DESCRIPTION;
-         case 'example': return COMMENT_TYPE.EXAMPLE;
-         case 'injection': return COMMENT_TYPE.INJECTION;
-         case 'input': return COMMENT_TYPE.INPUT;
-         case 'method': return COMMENT_TYPE.METHOD;
-         case 'model': return COMMENT_TYPE.MODEL;
-         case 'output': return COMMENT_TYPE.OUTPUT;
-         case 'param': return COMMENT_TYPE.PARAM;
-         default: return COMMENT_TYPE.UNKNOWN;
-      }
-   }
-
-   private getValues(text: string): void {
-      const parts: string[] = text.split(' ');
-      parts.reduce((finalDocParam, currPart, idx) => {
-
-
-         return finalDocParam;
-      }, new DocParam());
-   }
-
-
-
+function splitByTag(text: string): string[] {
+   return text.trim().split('@').
+      reduce((prev: string[], curr: string) => curr.trim().length > 0 ? [...prev, `@${curr}`] : prev, []);
 }
