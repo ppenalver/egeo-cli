@@ -34,7 +34,7 @@ function generateReadme(metadata: ComponentInfo): string {
 function generateInputOutputTable(paramenters: Parameter[], title: string): string {
    if (paramenters && paramenters.length > 0) {
       const lines: string[][] = paramenters.map((param) => {
-         const optionalValue: string = capitalizeFirstLetter(Boolean(!param.optional).toString());
+         const optionalValue: string = capitalizeFirstLetter(Boolean(param.required).toString());
          const desc: string = getParamDescription(param);
          const type: string = capitalizeFirstLetter(param.type);
          return [`\`${param.name}\``, type, optionalValue, desc];
@@ -59,7 +59,7 @@ function getMainDescription(metadata: ComponentInfo): string {
 
 function getExample(metadata: ComponentInfo): string {
    return hasValue(metadata.example) ?
-   `## Example\n\`\`\`\n   ${metadata.example}\n\`\`\`\n` : '';
+   `## Example\n\`\`\`\n${metadata.example}\n\`\`\`\n` : '';
 }
 
 function capitalizeFirstLetter(value: string): string {
