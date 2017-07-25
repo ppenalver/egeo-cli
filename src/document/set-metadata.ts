@@ -37,7 +37,7 @@ function generateInputOutputTable(paramenters: Parameter[], title: string): stri
          const optionalValue: string = capitalizeFirstLetter(Boolean(param.required).toString());
          const desc: string = getParamDescription(param);
          const type: string = capitalizeFirstLetter(param.type);
-         return [`\`${param.name}\``, type, optionalValue, desc];
+         return [param.name, type, optionalValue, desc];
       }
       );
       return `## ${title}\n\n${table([['Property', 'Type', 'Required', 'Description'], ...lines])}\n\n`;
