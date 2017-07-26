@@ -20,9 +20,12 @@ export function getAllResults(text: string, reg: RegExp, valueToTake: number): s
    return result;
 }
 
-export function normalizeText(text: string): string {
+export function normalizeText(text: string, removeLineBreak: boolean = false): string {
    text = _(text).defaultTo('').toString().trim();
    if (text.length > 0) {
+      if (removeLineBreak) {
+         text = text.replace(/(\r\n|\n|\r)/gm, '');
+      }
       while (_.startsWith(text, '\n')) {
          text = text.substring(1);
       }

@@ -43,7 +43,7 @@ export class DocParam {
 
          // Var description
          partial = applyRegexp(partial[1].trim(), /((.|[\r\n])+)/igm, 1);
-         this.description = normalizeText(partial[0]);
+         this.description = normalizeText(partial[0], true);
       }
    }
 
