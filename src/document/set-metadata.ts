@@ -6,7 +6,7 @@ const table = require('markdown-table');
 /* tslint:enable */
 
 import { hasValue, isDefined, log } from '../utils';
-import { ComponentInfo, Parameter } from './document.interfaces';
+import { ComponentInfo, Example, Parameter } from './document.interfaces';
 
 export function saveMetadata(componentPath: string, metadata: ComponentInfo): void {
    const readme: string = generateReadme(metadata);
@@ -58,8 +58,20 @@ function getMainDescription(metadata: ComponentInfo): string {
 }
 
 function getExample(metadata: ComponentInfo): string {
-   return hasValue(metadata.example) ?
-   `## Example\n\`\`\`\n${metadata.example}\n\`\`\`\n` : '';
+      return metadata.example && metadata.example.length > 0 ?
+         `## Example\n${metadata.example.map((example) => buildExample(example)).join('\n')}` : '';
+}
+
+function buildExample(example: Example): string {
+   return `${getTitle(example)}\`\`\`${example.syntax}\n${example.example}\n\`\`\`\``;
+}
+
+function getTitle(example: Example): string {
+   let name: string = example.name ? `*${example.name}*\n` : '';
+   if (example.description) {
+      name += `${example.description}\n`;
+   }
+   return name;
 }
 
 function capitalizeFirstLetter(value: string): string {

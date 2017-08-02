@@ -9,6 +9,9 @@
       "trailing-comma": [
          false
       ],
+      "max-line-length": [
+         150
+      ],
       "interface-name": [true, "never-prefix"]
    }
 }
