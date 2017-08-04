@@ -5,10 +5,11 @@ import { basename, join } from 'path';
 const table = require('markdown-table');
 /* tslint:enable */
 
-import { hasValue, isDefined, log } from '../utils';
-import { ComponentInfo, Example, Parameter } from './document.interfaces';
+import { hasValue, log } from '../utils';
+import { DocExample, DocModel, DocParam } from './code-parser';
+import { CommentParsed } from './parser';
 
-export function saveMetadata(componentPath: string, metadata: ComponentInfo): void {
+export function saveMetadata(componentPath: string, metadata: CommentParsed): void {
    const readme: string = generateReadme(metadata);
    writeReadme(componentPath, readme);
 }
@@ -22,58 +23,68 @@ function writeReadme(componentPath: string, doc: string): void {
    writeFileSync(path, doc);
 }
 
-function generateReadme(metadata: ComponentInfo): string {
+function generateReadme(metadata: CommentParsed): string {
    log(`[BUILD README]........`);
    const title: string = getMainDescription(metadata);
-   const inputs: string = generateInputOutputTable(metadata.inputs, 'Inputs');
-   const outputs: string = generateInputOutputTable(metadata.outputs, 'Outputs');
+   const inputs: string = generateInputOutputTable(metadata.inputs, 'Inputs', true);
+   const outputs: string = generateInputOutputTable(metadata.outputs, 'Outputs', false);
    const example: string = getExample(metadata);
-   return title + inputs + outputs + example;
+   const models: string = getModels(metadata.models);
+   return title + inputs + outputs + example + models;
 }
 
-function generateInputOutputTable(paramenters: Parameter[], title: string): string {
+function generateInputOutputTable(paramenters: DocParam[], title: string, inputs: boolean): string {
    if (paramenters && paramenters.length > 0) {
       const lines: string[][] = paramenters.map((param) => {
          const optionalValue: string = capitalizeFirstLetter(Boolean(param.required).toString());
-         const desc: string = getParamDescription(param);
          const type: string = capitalizeFirstLetter(param.type);
-         return [param.name, type, optionalValue, desc];
+         return inputs ? [param.name, type, optionalValue, param.description, param.defaultValue] :
+            [param.name, type, param.description];
       }
       );
-      return `## ${title}\n\n${table([['Property', 'Type', 'Required', 'Description'], ...lines])}\n\n`;
+      return inputs ? `## ${title}\n\n${table([['Property', 'Type', 'Req', 'Description', 'Default'], ...lines])}\n\n` :
+         `## ${title}\n\n${table([['Property', 'Type', 'Description'], ...lines])}\n\n`;
    }
    return '';
 }
 
-function getParamDescription(parameter: Parameter): string {
-   return hasValue(parameter.default) ?
-      `${parameter.description}, default: ${parameter.default}` : parameter.description;
-}
-
-function getMainDescription(metadata: ComponentInfo): string {
-   const title: string = hasValue(metadata.title) ? metadata.title : '{TITLE}';
-   const type: string = hasValue(metadata.type) ? metadata.type : '{TYPE}';
-   const description: string = hasValue(metadata.description) ? metadata.description : '{Component description}';
+function getMainDescription(metadata: CommentParsed): string {
+   const title: string = hasValue(metadata.globalInfo.name) ? metadata.globalInfo.name : '{TITLE}';
+   const type: string = hasValue(metadata.globalInfo.type) ? metadata.globalInfo.type : '{TYPE}';
+   const description: string = hasValue(metadata.globalInfo.description) ? metadata.globalInfo.description : '{Component description}';
    return `# ${title} (${type})\n\n   ${description}\n\n`;
 }
 
-function getExample(metadata: ComponentInfo): string {
-      return metadata.example && metadata.example.length > 0 ?
-         `## Example\n${metadata.example.map((example) => buildExample(example)).join('\n')}` : '';
+function getExample(metadata: CommentParsed): string {
+   return metadata.examples && metadata.examples.length > 0 ?
+      `## Example\n${metadata.examples.map((example) => buildExample(example)).join('\n')}\n` : '';
 }
 
-function buildExample(example: Example): string {
-   return `${getTitle(example)}\`\`\`${example.syntax}\n${example.example}\n\`\`\`\``;
+function buildExample(example: DocExample): string {
+   return `${getTitle(example.name, example.description)}\`\`\`${getType(example)}\n${example.example}\n\`\`\`\`\n`;
 }
 
-function getTitle(example: Example): string {
-   let name: string = example.name ? `*${example.name}*\n` : '';
-   if (example.description) {
-      name += `${example.description}\n`;
+function getType(example: DocExample): string {
+   return example.type === 'ts' ? 'typescript' : example.type;
+}
+
+function getTitle(title: string, description: string): string {
+   let name: string = title ? `*${title}*\n` : '';
+   if (description) {
+      name += `${description}\n`;
    }
    return name;
 }
 
 function capitalizeFirstLetter(value: string): string {
    return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function getModels(models: DocModel[]): string {
+   return models && models.length > 0 ?
+      `## Models\n${models.map((model) => buildModel(model)).join('\n')}\n` : '';
+}
+
+function buildModel(model: DocModel): string {
+   return `${getTitle(model.modelName, model.description)}\`\`\`typescript\n${model.modelCode}\n\`\`\`\`\n`;
 }
