@@ -6,7 +6,7 @@ const table = require('markdown-table');
 /* tslint:enable */
 
 import { hasValue, log } from '../utils';
-import { DocExample, DocModel, DocParam } from './code-parser';
+import { DocExample, DocLink, DocModel, DocParam } from './code-parser';
 import { CommentParsed } from './parser';
 
 export function saveMetadata(componentPath: string, metadata: CommentParsed): void {
@@ -30,7 +30,8 @@ function generateReadme(metadata: CommentParsed): string {
    const outputs: string = generateInputOutputTable(metadata.outputs, 'Outputs', false);
    const example: string = getExample(metadata);
    const models: string = getModels(metadata.models);
-   return title + inputs + outputs + example + models;
+   const links: string = getLinks(metadata.links);
+   return title + inputs + outputs + example + models + links;
 }
 
 function generateInputOutputTable(paramenters: DocParam[], title: string, inputs: boolean): string {
@@ -87,4 +88,13 @@ function getModels(models: DocModel[]): string {
 
 function buildModel(model: DocModel): string {
    return `${getTitle(model.modelName, model.description)}\`\`\`typescript\n${model.modelCode}\n\`\`\`\`\n`;
+}
+
+function getLinks(links: DocLink[]): string {
+   return links && links.length > 0 ?
+      `## Links\n${links.map((link) => buildLink(link)).join('\n')}\n` : '';
+}
+
+function buildLink(link: DocLink): string {
+   return `- [${link.linkName}](${link.link})\n`;
 }

@@ -1,10 +1,12 @@
 import {
    buildDocExamples,
    buildDocGeneral,
+   buildDocLinkCode,
    buildDocModelCode,
    buildDocParam,
    DocExample,
    DocGeneral,
+   DocLink,
    DocModel,
    DocParam,
    extractTag
@@ -18,6 +20,7 @@ export class CommentParsed {
    public outputs: DocParam[] = [];
    public examples: DocExample[] = [];
    public models: DocModel[] = [];
+   public links: DocLink[] = [];
 
    constructor(comments: string[], originalFilePath: string) {
       this.build(comments, originalFilePath);
@@ -38,6 +41,9 @@ export class CommentParsed {
                break;
             case TAG_TYPES.MODEL:
                this.models = buildDocModelCode(comment, originalFilePath);
+               break;
+            case TAG_TYPES.LINK:
+               this.links = buildDocLinkCode(comment, originalFilePath);
                break;
             case TAG_TYPES.EXAMPLE:
                this.examples = buildDocExamples(comment);

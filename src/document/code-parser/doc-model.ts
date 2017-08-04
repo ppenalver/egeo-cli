@@ -18,6 +18,7 @@ export class DocModel extends DocBase {
    public toString(): string {
       return `
         ${super.toString()}
+        modelName: ${this.modelName}
         modelCode: ${this.modelCode}
       `;
    }
