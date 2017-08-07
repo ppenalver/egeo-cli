@@ -87,7 +87,7 @@ function getModels(models: DocModel[]): string {
 }
 
 function buildModel(model: DocModel): string {
-   return `${getTitle(model.modelName, model.description)}\`\`\`typescript\n${model.modelCode}\n\`\`\`\`\n`;
+   return `${getTitle(model.modelName, model.description)}\`\`\`typescript\n${model.modelCode}\n\`\`\`\n`;
 }
 
 function getLinks(links: DocLink[]): string {
