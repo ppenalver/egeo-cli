@@ -62,7 +62,7 @@ function getExample(metadata: CommentParsed): string {
 }
 
 function buildExample(example: DocExample): string {
-   return `${getTitle(example.name, example.description)}\`\`\`${getType(example)}\n${example.example}\n\`\`\`\`\n`;
+   return `${getTitle(example.name, example.description)}\`\`\`${getType(example)}\n${example.example}\n\`\`\`\n`;
 }
 
 function getType(example: DocExample): string {
