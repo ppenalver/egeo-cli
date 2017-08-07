@@ -2,11 +2,11 @@
 <img src="https://github.com/Stratio/egeo-web/blob/master/src/assets/images/egeo_logo_c.png">
 </div>
 
-# Egeo-Cli
+# Egeo-Cli (Beta)
 
-EGEO-CLI is the open-source util used to automatize some common task that we do when develop for stratio and egeo. The goals are to reduce the time and complexity of test, develop and work being more productive.
+EGEO-CLI is the open-source util used to automatize document task that we do when develop for stratio and egeo. The goals are to reduce the time and complexity of document for being more productive.
 
-In this repository, you'll find a initial version of this cli now in develop. You can discover more in:
+In this repository, you'll find a initial version of this cli. You can discover more in:
 
 * [egeo](https://github.com/Stratio/egeo): The egeo library of components.
 * [egeo-web](https://github.com/Stratio/egeo-web): The official website of Egeo where documentation will be available soon.
@@ -26,12 +26,7 @@ In this repository, you'll find a initial version of this cli now in develop. Yo
 
 ## About this Repo
 
-This repo includes the components, services, and utilities built in Angular. The library is compiled with AoT for distribution and each component is provided as a module that can be imported separately in your project.
-
-We are also using [HMR](https://github.com/AngularClass/angular2-hmr) and [DLL](https://robertknight.github.io/posts/webpack-dll-plugins/) to dramatically speed your builds.
-
-* Documentation website (soon)
-
+This repo includes the code of egeo-cli that parse code and generate README.md files.
 
 ## Getting Started
 
@@ -39,7 +34,6 @@ We are also using [HMR](https://github.com/AngularClass/angular2-hmr) and [DLL](
 
 What you need to run this app:
 * [`node`](https://nodejs.org/es/) and `npm`
-* Ensure you're running the latest versions Node `v6.x.x` and NPM `4.x.x`+
 
 ### Installing
 
@@ -51,7 +45,7 @@ npm i -g @stratio/egeo-cli
 
 ### Work with egeo cli
 
-For now the only option implemented is for launch a demo in some folder
+For now the only option implemented is for document a file in base a code comments, more info in [Wiki page](https://github.com/Stratio/egeo-cli/wiki/Document)
 
 ```
 egeo-cli [relative path to code]
