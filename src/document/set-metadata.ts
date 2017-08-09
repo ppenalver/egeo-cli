@@ -58,19 +58,19 @@ function getMainDescription(metadata: CommentParsed): string {
 
 function getExample(metadata: CommentParsed): string {
    return metadata.examples && metadata.examples.length > 0 ?
-      `## Example\n${metadata.examples.map((example) => buildExample(example)).join('\n')}\n` : '';
+      `## Example\n\n${metadata.examples.map((example) => buildExample(example)).join('\n')}\n` : '';
 }
 
 function buildExample(example: DocExample): string {
-   return `${getTitle(example.name, example.description)}\`\`\`${getType(example)}\n${example.example}\n\`\`\`\n`;
+   return `${getTitle(example.name, example.description)}\n\`\`\`${getType(example)}\n${example.example}\n\`\`\`\n`;
 }
 
 function getType(example: DocExample): string {
    return example.type === 'ts' ? 'typescript' : example.type;
 }
 
-function getTitle(title: string, description: string): string {
-   let name: string = title ? `*${title}*\n` : '';
+function getTitle(title: string, description: string, subtitle?: string): string {
+   let name: string = title ? `*${title}*${subtitle ? ' (' + subtitle + ')' : ''}\n` : '';
    if (description) {
       name += `${description}\n`;
    }
@@ -83,11 +83,11 @@ function capitalizeFirstLetter(value: string): string {
 
 function getModels(models: DocModel[]): string {
    return models && models.length > 0 ?
-      `## Models\n${models.map((model) => buildModel(model)).join('\n')}\n` : '';
+      `## Models\n\n${models.map((model) => buildModel(model)).join('\n')}\n` : '';
 }
 
 function buildModel(model: DocModel): string {
-   return `${getTitle(model.modelName, model.description)}\`\`\`typescript\n${model.modelCode}\n\`\`\`\n`;
+   return `${getTitle(model.name, model.description, model.modelName)}\n\`\`\`typescript\n${model.modelCode}\n\`\`\`\n`;
 }
 
 function getLinks(links: DocLink[]): string {
