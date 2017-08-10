@@ -5,7 +5,7 @@ var docGenerator = require('../dist/index');
 var componentFile = undefined;
 
 program
-   .version(require('./package.json').version)
+   .version(require('../package.json').version)
    .usage('<file with comments full path>')
    .action(function (path) {
       componentFile = path
