@@ -5,15 +5,15 @@ var docGenerator = require('../dist/index');
 var componentFile = undefined;
 
 program
-   .version('0.1.0')
-   .usage('<example path>')
+   .version(require('./package.json').version)
+   .usage('<file with comments full path>')
    .action(function (path) {
       componentFile = path
    })
    .parse(process.argv);
 
 if (typeof componentFile === 'undefined') {
-   console.error('no component file path given!');
+   console.error('no file with comments path given!');
    process.exit(1);
 }
 

@@ -51,6 +51,8 @@ For now the only option implemented is for document a file in base a code commen
 egeo-cli [relative path to code]
 ```
 
+[More info](https://github.com/Stratio/egeo-cli/wiki)
+
 ## Contributing
 
 There are many ways to contribute to the Egeo-cli project. [Check our contribution section in the Wiki to learn more](https://github.com/Stratio/egeo-cli/wiki/How-to-contribute).
