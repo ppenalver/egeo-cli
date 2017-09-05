@@ -49,8 +49,8 @@ export function removeEmptyFromList(list: string[]): string[] {
 export function extractTag(text: string): TAG_TYPES {
    let internalText: string = '' + text;
    internalText = internalText.replace(EXAMPLE_REG_EXP, '');
-   internalText = internalText.replace(NAME_REG_EXP, '');
    internalText = internalText.replace(TYPE_REG_EXP, '');
+   internalText = internalText.replace(NAME_REG_EXP, '');
    return getTag(normalizeText(extractText(internalText, TAG_REG_EXP, 1)));
 }
 
@@ -58,7 +58,6 @@ export function extractType(text: string): string {
    let internalText: string = '' + text;
    internalText = internalText.replace(EXAMPLE_REG_EXP, '');
    internalText = internalText.replace(TAG_REG_EXP, '');
-   internalText = internalText.replace(NAME_REG_EXP, '');
    return _escape(normalizeText(extractText(internalText, TYPE_REG_EXP, 1)));
 }
 
@@ -81,8 +80,8 @@ export function extractDescription(text: string): string {
    let internalText: string = '' + text;
    internalText = internalText.replace(EXAMPLE_REG_EXP, '');
    internalText = internalText.replace(TAG_REG_EXP, '');
-   internalText = internalText.replace(NAME_REG_EXP, '');
    internalText = internalText.replace(TYPE_REG_EXP, '');
+   internalText = internalText.replace(NAME_REG_EXP, '');
    const a: string = normalizeText(extractText(internalText, ALL_REG_EXP, 1), true);
 
    return a;
