@@ -10,7 +10,7 @@ import { TAG_TYPES } from '../parser';
 
 const TAG_REG_EXP: RegExp = /@(\S*?)\s/;
 const TYPE_REG_EXP: RegExp = /{(.*?)}/;
-const NAME_REG_EXP: RegExp = /\[(.*?)\]/;
+const NAME_REG_EXP: RegExp = /\[(.*?(\\\[|\\\])*?)]/;
 const ALL_REG_EXP: RegExp = /((.|[\r\n])+)/;
 const EXAMPLE_REG_EXP: RegExp = /```((.|[\r\n])+?)```/;
 
@@ -27,7 +27,7 @@ export function normalizeText(text: string | null | undefined, removeLineBreak: 
    text = _defaultTo(text, '').trim();
    if (text.length > 0) {
       if (removeLineBreak) {
-         text = text.replace(/(\r\n|\n|\r)/gm, '');
+         text = text.replace(/(\r\n|\n|\r)+/gm, ' ');
       }
       while (_startsWith(text, '\n')) {
          text = text.substring(1);
@@ -68,7 +68,7 @@ export function extractName(text: string): string {
 export function extractDefaultValue(text: string): string {
    const name: string = extractFullNameBlock(text);
    const parts: string[] = name.split('=');
-   return parts.length === 2 ? normalizeText(parts[1]) : '';
+   return parts.length === 2 ? normalizeText(parts[1]).replace(/\\\[/g, '[').replace(/\\\]/g, ']') : '';
 }
 
 export function extractRequired(text: string): boolean {
