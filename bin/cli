@@ -1,20 +1,22 @@
 #!/usr/bin/env node
 
-var program = require('commander');
-var docGenerator = require('../dist/index');
-var componentFile = undefined;
+const program = require('commander');
+const { docGenerator, JiraCards } = require('../dist/index');
 
 program
    .version(require('../package.json').version)
-   .usage('<file with comments full path>')
-   .action(function (path) {
-      componentFile = path
-   })
+   .option('-d --document <file>', 'file with comments full path')
+   .option('-j --jira', 'Jira options')
    .parse(process.argv);
 
-if (typeof componentFile === 'undefined') {
-   console.error('no file with comments path given!');
+if (program.document) {
+   console.log('document')
+   docGenerator.generateDoc(program.document);
+} else if (program.jira) {
+   console.log('cards')
+   const cards = new JiraCards();
+   cards.test().catch(err => console.error(err));
+} else {
+   console.error('Unknown option!');
    process.exit(1);
 }
-
-docGenerator.generateDoc(componentFile);

@@ -1,10 +1,11 @@
-import * as chalk from 'chalk';
+import chalk, { Chalk } from 'chalk';
 
 /* tslint:disable:no-console */
 export function log(message: string, severity: 'Warn' | 'Error' | 'Info' = 'Info'): void {
-   const error: chalk.ChalkChain = chalk.bold.red;
-   const warning: chalk.ChalkChain = chalk.yellow;
-   const info: chalk.ChalkChain = chalk.blue;
+
+   const error: Chalk = chalk.bold.red;
+   const warning: Chalk = chalk.yellow;
+   const info: Chalk = chalk.blue;
 
    switch (severity) {
       case 'Warn': console.log(warning(message)); break;

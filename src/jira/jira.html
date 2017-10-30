@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <title>Cards Template</title>
+   <style>
+      body {
+         font-size: 16px;
+      }
+
+      .card {
+         display: flex;
+         flex-direction: column;
+         max-width: 300px;
+         min-width: 300px;
+         border: 1px solid black;
+         padding: 10px;
+      }
+
+      .header {
+         display: flex;
+         flex-direction: row;
+         flex-wrap: nowrap;
+         align-items: center;
+         font-size: 15px;
+         width: 100%
+      }
+
+      .type-img {
+         height: 20px;
+         width: 20px;
+      }
+
+      .user-img {
+         height: 30px;
+         width: 30px;
+         margin-left: auto;
+      }
+
+      .footer {
+         display: flex;
+         flex-direction: row;
+         width: 100%;
+      }
+
+      .story-points {
+         margin-left: auto;
+      }
+
+
+   </style>
+</head>
+
+<body>
+   <section class="card">
+      <header>
+         <img class="type-img" src="https://stratio.atlassian.net/secure/viewavatar?size=xsmall&amp;avatarId=10316&amp;avatarType=issuetype">
+         <span>CCT-90</span>
+         <img class="user-img" align="end" src="https://avatar-cdn.atlassian.com/173004c2e9350b70a7d4ce75a1e8b9ca?s=48&amp;d=https%3A%2F%2Fstratio.atlassian.net%2Fsecure%2Fuseravatar%3FownerId%3Djcnunez%26avatarId%3D12110%26noRedirect%3Dtrue">
+      </header>
+      <p>inputs: use native tag and inherit from base form class</p>
+      <footer class="footer">
+         <span class="story-points">10</span>
+   </footer>
+   </section>
+</body>
+
+</html>
+
