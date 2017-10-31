@@ -8,3 +8,16 @@ export interface Project {
    id: number;
    key: string;
 }
+
+export interface Board {
+   name: string;
+   type: string;
+   id: number;
+}
+
+export interface BoardResponse {
+   maxResults: number;
+   startAt: number;
+   isLast: boolean;
+   values: Board[];
+}
